@@ -1,0 +1,14 @@
+{
+  // 컴파일 포함
+  "include": [
+    "src/**/*.tsx?"
+  ],
+  // 컴파일 제외
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/*.(spec|test).ts"
+  ],
+  // 컴파일 옵션
+  "compilerOptions": { }
+}
