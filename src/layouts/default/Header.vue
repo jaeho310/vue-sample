@@ -33,7 +33,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-toolbar-title>Platform sample</v-toolbar-title>
+      <v-toolbar-title>Vue sample</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>

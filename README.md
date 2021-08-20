@@ -1,4 +1,4 @@
-# platform-sample
+# vue-tutorial
 
 ## Project setup
 ```
