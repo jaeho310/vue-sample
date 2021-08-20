@@ -64,7 +64,9 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState(["dialogInfo"])
+    ...mapState([
+      "dialogInfo",
+      ])
   },
   data() {
     return {
@@ -76,6 +78,9 @@ export default {
     }
   },
   methods: {
+    isValidated() {
+
+    },
     getUserList() {
       this.$http.get('http://localhost:8396/api/users')
       .then(res => {
@@ -97,10 +102,15 @@ export default {
       this.$router.push("/user/list")
     },
     deleteCard() {
+      if (!(this.selectedUserId||this.selectedCardId)) {
+        this.$store.commit('dialogManager', {text:'사용자와 삭제할 카드를 선택해주세요', delay: 120})
+        return
+      }
       let params = new URLSearchParams({
         userId: this.selectedUserId,
         cardId: this.selectedCardId
       }).toString();
+
       this.$http.delete(
         `http://localhost:8396/api/cards?${params}`
       )

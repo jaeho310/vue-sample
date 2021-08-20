@@ -77,27 +77,4 @@ export const store = new Vuex.Store({
       }
     },
   },
-  actions: {
-    httpDelete: function (context, payload) {
-      payload.params = new URLSearchParams({
-        userId: this.selectedUserId,
-        cardId: this.selectedCardId
-      }).toString();
-
-      return new Promise((resolve, reject) => {
-        let params = payload.params
-        // axios
-        this.$http.delete(
-          `http://localhost:8396/api/cards?${params}`
-        )
-        .then(res => {
-          resolve(res)
-          // this.$store.commit('dialogManager', {text:'삭제되었습니다.', callback: this.toUserList, delay: 120})
-        })
-        .catch(err => {
-          reject(err)
-        })
-      })
-    }
-  }
 });
