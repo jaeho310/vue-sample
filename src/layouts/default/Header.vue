@@ -40,11 +40,5 @@
 
 <script>
   export default {
-    methods: {
-      setView: function(to) {
-
-        alert(to);
-      }
-    }
   }
 </script>

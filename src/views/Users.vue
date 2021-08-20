@@ -5,17 +5,13 @@
         <v-icon
         large
         >
-          mdi-account
+          mdi-account-multiple
         </v-icon>
         회원목록
       </div>
       <div class="text-caption ml-1 mt-1">
       </div>
     </div>
-    <v-col>
-      <!-- <v-card -->
-      <!-- class="rounded-card" -->
-      <!-- color="#EEF4ED" /> -->
       <v-data-table
         :headers="getTableHeaders()"
         :items="users"
@@ -23,7 +19,6 @@
         :search="search"
         @click:row="clickItem"
       />
-    </v-col>
   </v-container>
 </template>
 <script>

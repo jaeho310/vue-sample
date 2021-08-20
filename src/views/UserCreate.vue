@@ -15,13 +15,13 @@
       label="Insert Username"
       style="display: inline"
       v-model="name" />
-      <v-btn
-      color="primary"
-      @click="createUser()"
-      >
-          등록
-      </v-btn>
     </div>
+    <v-btn
+    color="primary"
+    @click="createUser()"
+    >
+        등록
+    </v-btn>
     <v-dialog
       max-width="400"
       v-model="$store.state.showDialog"

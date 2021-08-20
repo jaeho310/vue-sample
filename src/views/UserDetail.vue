@@ -1,99 +1,83 @@
 <template>
   <v-container fluid style="width: 55%; margin-top: 5%" tag="section">
-    <v-col>
-      <v-row>
-        <div class="mb-5 black--text">
-          <div class="text-h4 ">
-            <v-icon
-            large
-            >
-              mdi-account
-            </v-icon>
-            상세정보
-          </div>
-          <div class="text-caption ml-1 mt-1">
-          </div>
-        </div>
-      </v-row>
-      <v-row>
-        <v-text-field
-          v-model="id"
-          label="번호"
-          outlined
-          readonly
-          color="black"
-          background-color="#EFEFEF"
-          dense
-        ></v-text-field>
-      </v-row>
-      <v-row>
-        <v-text-field
-          v-model="name"
-          label="이름"
-          outlined
-          color="success"
-          dense
-        ></v-text-field>
-      </v-row>
-      <v-row>
-        <v-text-field
-          v-model="createdAt"
-          label="가입일"
-          outlined
-          readonly
-          color="black"
-          background-color="#EFEFEF"
-          dense
-        ></v-text-field>
-      </v-row>
-      <v-row>
-        <v-text-field
-          v-model="updatedAt"
-          label="변경일"
-          outlined
-          readonly
-          color="black"
-          background-color="#EFEFEF"
-          dense
-        ></v-text-field>
-      </v-row>
-      <v-row>
-        <v-text-field
-          v-model="cardData"
-          label="보유카드(한도)"
-          outlined
-          readonly
-          color="black"
-          background-color="#EFEFEF"
-          dense
-        ></v-text-field>
-      </v-row>
-      <v-row>
-          <v-spacer></v-spacer>
+    <div class="mb-5 black--text">
+      <div class="text-h4 ">
+        <v-icon
+        large
+        >
+          mdi-account-check
+        </v-icon>
+        상세정보
+      </div>
+      <div class="text-caption ml-1 mt-1">
+      </div>
+    </div>
+    <v-text-field
+      v-model="id"
+      label="번호"
+      outlined
+      readonly
+      color="black"
+      background-color="#EFEFEF"
+      dense
+    ></v-text-field>
+    <v-text-field
+      v-model="name"
+      label="이름"
+      outlined
+      color="success"
+      dense
+    ></v-text-field>
+    <v-text-field
+      v-model="createdAt"
+      label="가입일"
+      outlined
+      readonly
+      color="black"
+      background-color="#EFEFEF"
+      dense
+    ></v-text-field>
+    <v-text-field
+      v-model="updatedAt"
+      label="변경일"
+      outlined
+      readonly
+      color="black"
+      background-color="#EFEFEF"
+      dense
+    ></v-text-field>
+    <v-text-field
+      v-model="cardData"
+      label="보유카드(한도)"
+      outlined
+      readonly
+      color="black"
+      background-color="#EFEFEF"
+      dense
+    ></v-text-field>
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-btn
+      color="primary"
+      @click="$store.commit('dialogManager', {text:'변경하시겠습니까?', question: true, callback: updateUser})"
+      >
+        변경
+      </v-btn>
 
-          <v-btn
-          color="primary"
-          @click="$store.commit('dialogManager', {text:'변경하시겠습니까?', question: true, callback: updateUser})"
-          >
-            변경
-          </v-btn>
-
-          <v-btn class="ml-3 mr-3"
-          color="primary"
-          @click="$store.commit('dialogManager', {text:'삭제하시겠습니까?', question: true, callback: deleteUser})"
-          >
-          <!-- @click="dialogManager('삭제하시겠습니까?', true, deleteUser)" -->
-            삭제
-          </v-btn>
-          <v-btn
-          color="primary"
-          @click="userList"
-          >
-            목록
-          </v-btn>
-      </v-row>
-    </v-col>
-
+      <v-btn class="ml-3 mr-3"
+      color="primary"
+      @click="$store.commit('dialogManager', {text:'삭제하시겠습니까?', question: true, callback: deleteUser})"
+      >
+      <!-- @click="dialogManager('삭제하시겠습니까?', true, deleteUser)" -->
+        삭제
+      </v-btn>
+      <v-btn
+      color="primary"
+      @click="toUserList"
+      >
+        목록
+      </v-btn>
+    </v-row>
     <v-dialog
       max-width="400"
       v-model="$store.state.showDialog"
@@ -143,10 +127,14 @@ export default {
       this.name = data.name
       this.createdAt = data.createdAt
       this.updatedAt = data.updatedAt
-      if (data.card == null) {
+      if (data.cards == null) {
         this.cardData = "없음"
       } else {
-        this.cardData = data.cards
+        let cardArray = []
+        for ( var value of data.cards) {
+          cardArray.push(value.name + '(' + String(value.limit) + ')')
+        }
+        this.cardData = cardArray.join(", ")
       }
     },
     updateUser() {
@@ -181,13 +169,13 @@ export default {
           }}
         )
         .then(res => {
-          this.$store.commit('dialogManager', {text:'삭제되었습니다.', callback: this.userList, delay: 120})
+          this.$store.commit('dialogManager', {text:'삭제되었습니다.', callback: this.toUserList, delay: 120})
         })
         .catch(err => {
           console.log(err)
         })
     },
-    userList() {
+    toUserList() {
       this.$router.push("/user/list")
     },
   },

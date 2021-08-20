@@ -22,6 +22,6 @@
   #explain{
     font-size: 25px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:royalblue
+    color:#439FCC
 }
 </style>
