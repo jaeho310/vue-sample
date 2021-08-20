@@ -59,7 +59,7 @@
       <v-spacer></v-spacer>
       <v-btn
       color="primary"
-      @click="$store.commit('dialogManager', {text:'변경하시겠습니까?', question: true, callback: updateUser})"
+      @click="updateUser"
       >
         변경
       </v-btn>
@@ -154,7 +154,7 @@ export default {
           }}
         )
         .then(res => {
-          this.$store.commit('dialogManager', {text:'변경되었습니다.', callback: this.userList, delay: 120})
+          this.$store.commit('dialogManager', {text:'변경되었습니다.', callback: this.toUserList, delay: 120})
         })
         .catch(err => {
           console.log(err)

@@ -90,7 +90,7 @@ export default {
       })
     },
     createCard() {
-      if (!this.selectedUser) {
+      if (this.selectedUser=='') {
         this.$store.commit('dialogManager', {text: '사용자를 선택해주세요'})
         return
       }
@@ -103,7 +103,7 @@ export default {
           JSON.stringify({
             'name': this.cardName,
             'limit': Number(this.limit),
-            'userId': Number(this.selectedUser)
+            'userId': Number(this.selectedUserId)
           }),
           {
             headers: {
