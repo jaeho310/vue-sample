@@ -3,10 +3,10 @@
       <v-avatar
         size="250"
       >
-        <v-img sizes="250" src=https://t1.daumcdn.net/cfile/tistory/2459514E550A64DD27 />
+        <v-img sizes="250" src="https://tistory3.daumcdn.net/tistory/3932093/attach/011129f3c339412f95e66b56125cb452" />
       </v-avatar>
         <p id="explain">
-          플랫폼연구팀 프론트엔드 샘플입니다
+          프론트엔드 샘플입니다
         </p>
       <div />
     </v-container>
