@@ -9,7 +9,7 @@
     <div class="text-body-1 font-weight-light pt-6 pt-md-0 text-center">
         &copy; {{ (new Date()).getFullYear() }}, Made by <v-icon>mdi-vuetify</v-icon>
         <a
-        href="https://b-iris.mobigen.com"
+        href="https://frozenpond.tistory.com"
         class="text-decoration-none"
         >jaeho</a>
     </div>
